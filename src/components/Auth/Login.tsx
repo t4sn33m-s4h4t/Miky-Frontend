@@ -79,7 +79,7 @@ const Login = () => {
                             <Link className='mt-2 text-secondary-600 block font-semibold text-base pointer text-right hover:underline' href={"/auth/forget-password"}>Forget Password</Link>
                         </div>
                         <p className="text-sm text-center text-primary-650 mt-3">
-                            Don't have an account?{' '}
+                            Don&apos;t have an account?{' '}
                             <Link href="/auth/signup" className="text-primary-500 hover:underline">
                                 Sign Up
                             </Link>

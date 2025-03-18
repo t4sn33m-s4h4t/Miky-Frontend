@@ -1,6 +1,6 @@
 "use client"
 import { Heart, HomeIcon, LogOutIcon, MessageCircle, Search, SquarePlus } from 'lucide-react'
-import React, { useReducer, useState } from 'react'
+import React, { useState } from 'react'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../../Store/Store'

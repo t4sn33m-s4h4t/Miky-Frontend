@@ -7,7 +7,7 @@ import { User } from '../../../types';
 import axios from 'axios';
 import { BASE_API_URL } from '../../../server';
 import { handleAuthRequest } from '../utils/apiRequest';
-import { BookMarked, Grid, Loader, MenuIcon } from 'lucide-react';
+import { BookMarked, Grid, MenuIcon } from 'lucide-react';
 import LeftSidebar from '../Home/LeftSidebar';
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '../ui/sheet';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';

@@ -125,7 +125,7 @@ const EditProfilePage = () => {
             setBio(user.bio || '');
             setSelectedImage(user.profilePicture || null);
         }
-    }, [user]);
+    }, [user, router]);
     
     return (
         <div className='flex pb-20'>

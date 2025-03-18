@@ -126,7 +126,7 @@ if (isPageLoading) {
       </div>
       <div className="flex items-center mt-4 space-x-2">
         <h1 className="text-sm sm:text-lg font-medium text-primary-500">
-          Didn't get the OTP code?
+          Didn&apos;t get the OTP code?
         </h1>
         <button
           onClick={handleResendOtp}

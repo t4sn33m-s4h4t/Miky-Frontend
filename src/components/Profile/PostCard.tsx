@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { Heart, MessageCircle } from 'lucide-react';
-import { Post, User } from '../../../types';
+import { Post} from '../../../types';
 import { Dialog, DialogContent, DialogTitle } from '../ui/dialog';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import DotButton from '../Helper/DotButton';
