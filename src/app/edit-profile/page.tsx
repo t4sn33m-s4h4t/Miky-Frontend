@@ -49,10 +49,11 @@ const EditProfilePage = () => {
         const trimmedBio = bio.trim();
         const formData = new FormData();
         formData.append("bio", trimmedBio);
-    
-        if (fileInputRef.current?.files[0]) {
+     
+        if (fileInputRef.current && fileInputRef.current.files && fileInputRef.current.files[0]) {
             formData.append("profilePicture", fileInputRef.current.files[0]);
         }
+    
         const updateProfileReq = async () => await axios.post(`${BASE_API_URL}/users/edit-profile`, formData, { withCredentials: true });
         const result = await handleAuthRequest(updateProfileReq, setIsLoadingProfile);
     
