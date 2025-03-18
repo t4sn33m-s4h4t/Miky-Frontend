@@ -1,6 +1,6 @@
  
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Post, Comment } from "../types";
+import { Post, PostComment, } from "../types";
 
 interface PostState {
   posts: Post[];
@@ -33,7 +33,7 @@ const postSlice = createSlice({
         }
       }
     },
-    addComment: (state, action: PayloadAction<{ postId: string; comment: Comment }>) => {
+    addComment: (state, action: PayloadAction<{ postId: string; comment: PostComment }>) => {
       const post = state.posts.find((post) => post._id === action.payload.postId);
       if (post) {
         post.comments.push(action.payload.comment);

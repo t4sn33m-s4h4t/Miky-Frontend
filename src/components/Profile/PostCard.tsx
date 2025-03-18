@@ -23,14 +23,16 @@ const PostCard = ({ post }: Props) => {
     const router = useRouter(); 
     const dispatch = useDispatch();
 
-    const handleComment = async (id: string) => {
-        if (!comment.trim()) return;
-        const result = await addCommentHandler(id, comment, setComment); 
-        if (result) {
-            dispatch(addComment(result));
-            post?.comments.push(result.comment)
-        }
-    }; 
+        const handleComment = async (id: string) => {
+            if (!comment.trim()) return;
+            if (!id) return;
+            const result = await addCommentHandler(id, comment, setComment);
+            if (result) {  
+                const { postId, comment: c } = result;
+                dispatch(addComment({ postId, comment: c }));
+                post?.comments.push(result.comment)
+            }
+        };
     const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>, id: string) => {
         if (e.key === 'Enter') {
             handleComment(id);

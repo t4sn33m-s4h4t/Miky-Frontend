@@ -58,15 +58,15 @@ const Feed = () => {
 
     }
   };
-
-  const handleComment = async (id: string) => {
-    const result = await addCommentHandler(id, comment, setComment);
-
-    if (result) {
-      dispatch(addComment(result));  
-    }
-  };
-  
+ 
+     const handleComment = async (id: string) => {
+          if (!id) return;
+          const result = await addCommentHandler(id, comment, setComment);
+          if (result) {  
+              const { postId, comment: c } = result;
+              dispatch(addComment({ postId, comment: c }));
+          }
+      };
 
 
   const handleKeyPress = (e: React.KeyboardEvent, id: string) => {

@@ -24,12 +24,13 @@ const Comment = ({ user, post, showIcon = false }: Props) => {
     const dispatch = useDispatch();
 
     const handleComment = async (id: string) => {
-        if (!id) return; 
+        if (!id) return;
         const result = await addCommentHandler(id, comment, setComment);
-        if (result) { 
-            dispatch(addComment(result));
+        if (result) {  
+            const { postId, comment: c } = result;
+            dispatch(addComment({ postId, comment: c }));
         }
-    }; 
+    };
     const handleKeyPress = (e: React.KeyboardEvent, id: string) => {
         if (e.key === 'Enter' && id) {  
             handleComment(id);

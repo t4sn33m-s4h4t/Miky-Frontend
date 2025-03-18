@@ -4,13 +4,14 @@ import { toast } from "sonner";
 import { handleAuthRequest } from "../utils/apiRequest";
 import { BASE_API_URL } from "../../../server";
 import axios from "axios";
+import { PostComment } from "../../../types";
 
 
 export const addCommentHandler = async (
     id: string,
     comment: string,
     setComment: (value: string) => void
-): Promise<{ postId: string; comment: Comment } | null> => {
+): Promise<{ postId: string; comment: PostComment } | null> => {
     if (!comment.trim()) return null;
 
     try {
@@ -25,13 +26,19 @@ export const addCommentHandler = async (
 
         if (result?.data?.status === "success") {
             toast.success("Comment Posted");
-            setComment(""); 
-            const newComment = {
-                postId: id,
-                comment: result?.data?.data?.comment, 
+            setComment("");
+ 
+            const commentData: PostComment = {
+                _id: result.data.data.comment._id,
+                text: result.data.data.comment.text,
+                user: result.data.data.comment.user,
+                createdAt: result.data.data.comment.createdAt,
             };
-            
-            return newComment;
+
+            return {
+                postId: id,
+                comment: commentData,  
+            };
         }
 
         return null;
