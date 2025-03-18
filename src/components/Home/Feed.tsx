@@ -52,21 +52,21 @@ const Feed = () => {
 
   const handleSaveUnsave = async (id: string) => {
     const result = await axios?.post(`${BASE_API_URL}/posts/save-unsave-post/${id}`, {}, { withCredentials: true })
-    if (result.data.status === 'success') { 
+    if (result.data.status === 'success') {
       dispatch(setAuthUser(result.data.data))
       toast.success(result.data.message);
 
     }
   };
- 
-     const handleComment = async (id: string) => {
-          if (!id) return;
-          const result = await addCommentHandler(id, comment, setComment);
-          if (result) {  
-              const { postId, comment: c } = result;
-              dispatch(addComment({ postId, comment: c }));
-          }
-      };
+
+  const handleComment = async (id: string) => {
+    if (!id) return;
+    const result = await addCommentHandler(id, comment, setComment);
+    if (result) {
+      const { postId, comment: c } = result;
+      dispatch(addComment({ postId, comment: c }));
+    }
+  };
 
 
   const handleKeyPress = (e: React.KeyboardEvent, id: string) => {
@@ -95,7 +95,7 @@ const Feed = () => {
             <div className="flex items-center space-x-2">
               <Avatar onClick={() => router.push(`/profile/${post?.user?._id}`)} className='w-9 h-9 cursor-pointer'>
                 <AvatarImage className='h-full w-full' src={post?.user?.profilePicture} />
-                <AvatarFallback  className='bg-primary-350 text-secondary-100'>{post?.user?.username[0].toUpperCase()}</AvatarFallback>
+                <AvatarFallback className='bg-primary-350 text-secondary-100'>{post?.user?.username[0].toUpperCase()}</AvatarFallback>
               </Avatar>
               <h1 className='cursor-pointer' onClick={() => router.push(`/profile/${post?.user?._id}`)}>
                 {post?.user?.username}
@@ -117,10 +117,12 @@ const Feed = () => {
               <Send className='cursor-pointer' />
             </div>
             <Bookmark
-              onClick={() => handleSaveUnsave(post?._id)}
-              className={`cursor-pointer ${(user?.savedPosts ?? []).includes(post?._id) ? "fill-secondary-400 text-secondary-400" : "text-secondary-600"
-                }`}
+              onClick={() => handleSaveUnsave(post?._id)} // Pass the post ID as a string
+              className={`cursor-pointer ${(user?.savedPosts?.map(p => p._id) ?? []).includes(post?._id ?? "") ? "fill-secondary-400 text-secondary-400" : "text-secondary-600"}`}
+
             />
+
+
           </div>
           <h1 className="mt-2 text-sm font-semibold">{post?.likes.length} Likes</h1>
           <p className="mt-2 font-medium break-words overflow-hidden">{post?.caption}</p>
