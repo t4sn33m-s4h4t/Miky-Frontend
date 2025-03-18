@@ -1,26 +1,42 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+    --color-primary-150: #E6D8C3;
+    --color-primary-200: #DCC3A1;
+    --color-primary-250: #C8A887;
+    --color-primary-300: #B98F6D;
+    --color-primary-350: #A67752;
+    --color-primary-400: #8C5E3C;
+    --color-primary-450: #734A2E;
+    --color-primary-500: #5B3822;
+    --color-primary-550: #3D2415;
+    --color-primary-600: #2A170C;
+    --color-primary-650: #1D0F08;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+    --color-secondary-100: #F6F0F0;
+    --color-secondary-200: #F2E2B1;
+    --color-secondary-300: #B28C68;
+    --color-secondary-400: #8D6848;
+    --color-secondary-500: #6B4C32;
+    --color-secondary-600: #523924;
+    --color-secondary-700: #3B2718;
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@layer utilities {
+    .no-spinner::-webkit-outer-spin-button,
+    .no-spinner::-webkit-inner-spin-button{
+        @apply appearance-none;
+        margin: 0;
 }
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.no-spinner{
+    @apply appearance-none;
+}
+button {
+    cursor: pointer;
+}
+div:has(#create-post){
+    background-color: var(--color-secondary-200);
+}
+#comments{
+    max-width: var(--container-5xl);
+}
 }
