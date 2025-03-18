@@ -37,9 +37,7 @@ npm install
 ### 3. Set Up Environment Variables
 Create a .env.local file in the root directory and add the following:
 ```bash
-NEXT_PUBLIC_API_BASE_URL=http://localhost:5000
-NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=your_cloud_name
-NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET=your_upload_preset
+NEXT_PUBLIC_BACKEND_API=http://localhost:8000/api/v1 
 ```
 
 ### 4. Run the Development Server
