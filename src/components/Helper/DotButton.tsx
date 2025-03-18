@@ -24,7 +24,8 @@ const DotButton = ({ post, user }: Props) => {
     const dispatch = useDispatch();
     const isOwnPost = post?.user?._id === user?._id || post?.user === user?._id;
     const isFollowing = post?.user?._id ? user?.following.includes(post.user._id) : false;
-    const isSaved = user?.savedPosts.includes(post?._id || '');
+    const isSaved = user?.savedPosts.some(savedPost => savedPost._id === post?._id);
+
 
     const router = useRouter();
     const [isDeleting, setIsDeleting] = useState(false);
