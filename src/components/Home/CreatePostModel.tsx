@@ -121,8 +121,7 @@ const CreatePostModel = ({ isOpen, onClose }: Props) => {
                   className="mt-4 p-2 border border-secondary-300 rounded-md w-full text-primary-600 focus:outline-none bg-primary-150 focus:ring-2 focus:ring-secondary-300"
                 />
                 <div className="flex space-x-4 mt-4">
-                  <LoadingButton
-                    variant={"outline"}
+                  <LoadingButton 
                     className="bg-primary-450 text-white hover:bg-primary-150 hover:text-secondary-500 "
                     onClick={handleCreatePost}
                     isLoading={isLoading}
