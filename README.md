@@ -27,12 +27,12 @@ Miky: https://miky-frontend.vercel.app/
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/miky-frontend.git
+git clone https://github.com/t4sn33m-s4h4t/miky-frontend.git
 cd miky-frontend
 ```
 ### 2. Install Dependencies
 ```bash
-npm install 
+npm install --force
 ```
 ### 3. Set Up Environment Variables
 Create a .env.local file in the root directory and add the following:
