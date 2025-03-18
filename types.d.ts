@@ -31,7 +31,7 @@ export interface Post {
         url: string;
         publicId: string;
     };
-    user: User | string | undefined;
+    user: User;
     likes: string[];
     comments: PostComment[];  
     createdAt: string;
