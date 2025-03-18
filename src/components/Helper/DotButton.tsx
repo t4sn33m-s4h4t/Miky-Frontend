@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react'; 
+import React, { useState } from 'react';
 import { Post, User } from '../../../types';
 import { useDispatch } from 'react-redux';
 import { Dialog, DialogClose, DialogContent, DialogTitle, DialogTrigger } from '../ui/dialog';
@@ -12,7 +12,7 @@ import { toast } from 'sonner';
 import { BASE_API_URL } from '../../../server';
 import { useFollowUnfollow } from '../hooks/useAuth';
 import { handleAuthRequest } from '../utils/apiRequest';
-import { deletePost } from '../../../Store/postSlice';  
+import { deletePost } from '../../../Store/postSlice';
 import { useRouter } from 'next/navigation';
 
 type Props = {
@@ -24,24 +24,24 @@ const DotButton = ({ post, user }: Props) => {
     const dispatch = useDispatch();
     const isOwnPost = post?.user?._id === user?._id || post?.user === user?._id;
     const isFollowing = post?.user?._id ? user?.following.includes(post.user._id) : false;
-    const isSaved = user?.savedPosts.some(savedPost => 
+    const isSaved = user?.savedPosts.some(savedPost =>
         typeof savedPost !== 'string' && savedPost._id === post?._id
-      );
-      
+    );
+
 
     const router = useRouter();
     const [isDeleting, setIsDeleting] = useState(false);
 
-    const handleDeletePost = async () => { 
-        setIsDeleting(true); 
+    const handleDeletePost = async () => {
+        setIsDeleting(true);
         try {
             const deletePostReq = async () => await axios.delete(`${BASE_API_URL}/posts/delete-post/${post?._id}`, { withCredentials: true });
             const result = await handleAuthRequest(deletePostReq);
- 
+
             if (result?.data.status === 'success') {
                 if (post?._id) {
                     dispatch(deletePost(post._id));
-                    toast.success(result.data.message); 
+                    toast.success(result.data.message);
                     router.push("/")
                 }
             }
@@ -49,7 +49,7 @@ const DotButton = ({ post, user }: Props) => {
             console.error("Error deleting post:", error);
             toast.error('Error');
         } finally {
-            setIsDeleting(false); 
+            setIsDeleting(false);
         }
     };
 
@@ -91,17 +91,18 @@ const DotButton = ({ post, user }: Props) => {
                                 </Button>
                             </Link>
                             <Button
-                                onClick={() => handleSaveUnsave(post?._id)}
+                                onClick={() => post?._id && handleSaveUnsave(post._id)}
                                 className={`${!isSaved ? "bg-secondary-400 text-white hover:bg-secondary-500" : "bg-secondary-400/45 hover:bg-secondary-400/70 text-white"}`}
                             >
                                 {isSaved ? "Unsave" : "Save"}
                             </Button>
 
+
                             {(isOwnPost || user?.isAdmin) && (
                                 <Button
                                     onClick={handleDeletePost}
                                     className='hover:bg-red-400 text-secondary-100 bg-red-600 hover:text-white'
-                                    disabled={isDeleting} 
+                                    disabled={isDeleting}
                                 >
                                     {isDeleting ? "Deleting..." : "Delete Post"}
                                 </Button>
