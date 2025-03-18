@@ -19,14 +19,14 @@ type Props = {
     post: Post | null;
     user: User | null;
 };
-
 const DotButton = ({ post, user }: Props) => {
     const { handleFollowUnfollow } = useFollowUnfollow();
     const dispatch = useDispatch();
     const isOwnPost = post?.user?._id === user?._id || post?.user === user?._id;
-    const isFollowing = (post?.user?._id || post?.user) ? (user?.following.includes(post.user._id) || user?.following.includes(post?.user)) : false;
-    const isSaved = user?.savedPosts.includes(post?._id);
-    const router = useRouter() 
+    const isFollowing = post?.user?._id ? user?.following.includes(post.user._id) : false;
+    const isSaved = user?.savedPosts.includes(post?._id || '');
+
+    const router = useRouter();
     const [isDeleting, setIsDeleting] = useState(false);
 
     const handleDeletePost = async () => { 
@@ -44,8 +44,7 @@ const DotButton = ({ post, user }: Props) => {
             }
         } catch (error) {
             console.error("Error deleting post:", error);
-            console.log(error)
-            toast.error('error');
+            toast.error('Error');
         } finally {
             setIsDeleting(false); 
         }
@@ -61,7 +60,7 @@ const DotButton = ({ post, user }: Props) => {
 
     return (
         <div>
-            <Dialog >
+            <Dialog>
                 <DialogTrigger>
                     <Ellipsis className='w-8 h-8 text-primary-650' aria-label="More options" />
                 </DialogTrigger>
@@ -73,10 +72,8 @@ const DotButton = ({ post, user }: Props) => {
                                 <div>
                                     <Button
                                         onClick={() => {
-                                            if (post?.user?._id) {
-                                                handleFollowUnfollow(post?.user?._id);
-                                            } else if (post?.user) {
-                                                handleFollowUnfollow(post?.user);
+                                            if (post?.user) {
+                                                handleFollowUnfollow(post.user._id);
                                             }
                                         }}
                                         className={`${isFollowing ? "bg-secondary-300 text-white" : "bg-secondary-400 text-white"}`}

@@ -8,7 +8,7 @@ export interface User {
     followers: string[];
     following: string[];
     posts: Post[];
-    savedPosts: string[] | Post[];
+    savedPosts:  Post[] | string[];
     isVerified: boolean;
     isAdmin: boolean;
 }
