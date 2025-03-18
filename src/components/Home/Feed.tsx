@@ -104,7 +104,7 @@ const Feed = () => {
             <DotButton post={post} user={user} />
           </div>
           <div className='mt-2'>
-            <Image src={post?.image?.url} alt='Post' width={400} height={400} className='w-full' priority />
+            <Image src={post?.image?.url || ""} alt='Post' width={400} height={400} className='w-full' priority />
           </div>
           <div className="mt-3 flex items-center justify-between">
             <div className='flex items-center space-x-4'>
